@@ -1,6 +1,4 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, ReadOnlyPasswordHashField
-from django.forms.widgets import ClearableFileInput
 from todo_list.models import *
 
 

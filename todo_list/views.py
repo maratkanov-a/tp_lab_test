@@ -11,6 +11,11 @@ class ListTasks(ListView):
 class CreateTask(CreateView):
     model = Task
     form_class = CreateTaskForm
+    success_url = reverse_lazy('home-page')
+
+    def form_valid(self, form):
+        form.instance.which_user = self.request.user
+        return super(CreateTask, self).form_valid(form)
 
 
 class UpdateTask(UpdateView):

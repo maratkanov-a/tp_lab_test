@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="row margin-content">
+    <div  class="row margin-content">
         <div class="col s12">
-            <form class="js-add-task">
+            <form method="POST" class="js-add-task">
+                {% csrf_token %}
                 <div class="input-field col s12">
                   <input placeholder="Place your task here" id="task" data-url="{% url 'task-create-page'%}" type="text" class="validate">
                   <label for="task">Task</label>
@@ -16,8 +17,7 @@
             {% for task in task_list %}
                 <div class="card">
                     <div class="card-content">
-                      <span class="card-title">{{ task.title }}</span>
-                      <p>{{ task.description }}</p>
+                      <span class="card-title">{{ task.description }}</span>
                         <input id="deadline" data-url="{% url 'task-update-page' pk=task.id %}" type="date" class="datepicker picker__input">
                     </div>
                     <div class="card-action">
