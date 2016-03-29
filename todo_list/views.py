@@ -10,10 +10,12 @@ class ListTasks(ListView):
 
 class CreateTask(CreateView):
     model = Task
+    form_class = CreateTaskForm
 
 
 class UpdateTask(UpdateView):
     model = Task
+    form_class = UpdateTaskForm
 
 
 class DeleteTask(DeleteView):
