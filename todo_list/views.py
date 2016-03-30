@@ -18,11 +18,19 @@ class CreateTask(CreateView):
         return super(CreateTask, self).form_valid(form)
 
 
-class UpdateTask(UpdateView):
+class UpdateTaskCompletion(UpdateView):
     model = Task
-    form_class = UpdateTaskForm
+    form_class = UpdateTaskCompletionForm
+    success_url = reverse_lazy('home-page')
+
+
+class UpdateTaskOverdue(UpdateView):
+    model = Task
+    form_class = UpdateTaskOverdueForm
+    success_url = reverse_lazy('home-page')
 
 
 class DeleteTask(DeleteView):
     model = Task
+    success_url = reverse_lazy('home-page')
 

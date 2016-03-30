@@ -8,7 +8,19 @@ class CreateTaskForm(forms.ModelForm):
         fields = ['description']
 
 
-class UpdateTaskForm(forms.ModelForm):
+class UpdateTaskDeadlineForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ['description', 'deadline', 'is_overdue', 'is_competed']
+        fields = ['deadline']
+
+
+class UpdateTaskOverdueForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ['is_overdue']
+
+
+class UpdateTaskCompletionForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ['is_completed']
