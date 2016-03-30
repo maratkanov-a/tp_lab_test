@@ -41,3 +41,15 @@ $('.js-update-deadline').on('change', function(e) {
     );
 });
 
+
+$('.js-task-delete').on('click', function(e) {
+     e.preventDefault();
+    var new_this = $(this);
+    $.post(new_this.data('url'),
+        { deadline: new_this.val()},
+        function(){
+            $('html').load('/')
+        }
+    );
+});
+
