@@ -7,6 +7,11 @@ from forms import *
 class ListTasks(ListView):
     model = Task
 
+    def get_context_data(self, **kwargs):
+        data = super(ListTasks, self).get_context_data(**kwargs)
+        data['now'] = datetime.datetime.now()
+        return data
+
 
 class CreateTask(CreateView):
     model = Task
