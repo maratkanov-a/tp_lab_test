@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if form.errors %}
+        <small class="error">Your username and password didn't match. Please try again.</small>
+    {% endif %}
+
+    <form method="post" action="{% url 'login-page' %}">
+    {% csrf_token %}
+
+        <label>Username</label>
+            {{ form.username }}
+        <label>Password</label>
+            {{ form.password }}
+        <input class="waves-effect waves-light btn" type="submit" value="Sign In" />
+        <input type="hidden" name="next" value="{% url 'home-page' %}" />
+
+    </form>
+
+{% endblock %}
