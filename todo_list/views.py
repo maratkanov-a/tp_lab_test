@@ -29,9 +29,9 @@ class UpdateTaskCompletion(UpdateView):
     success_url = reverse_lazy('home-page')
 
 
-class UpdateTaskOverdue(UpdateView):
+class UpdateTaskDeadline(UpdateView):
     model = Task
-    form_class = UpdateTaskOverdueForm
+    form_class = UpdateTaskDeadlineForm
     success_url = reverse_lazy('home-page')
 
 

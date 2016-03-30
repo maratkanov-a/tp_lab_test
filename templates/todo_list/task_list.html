@@ -21,19 +21,19 @@
                     <div class="card">
                         <div class="card-content">
                           <span class="card-title">{{ task.description }}</span>
-                            <input id="deadline" data-url="{% url 'task-update-page' pk=task.id %}" type="date" class="datepicker picker__input">
+                            <input data-url="{% url 'task-update-deadline-page' pk=task.id %}" type="date" class="datepicker js-update-deadline" value="{{ task.deadline|date:"Y-m-d" }}">
                             <p>{{ task.is_completed }}</p>
                         </div>
                         <div class="card-action">
                           <a href="{% url 'task-delete-page' pk=task.id %}">Delete</a>
-                          <a class="js-task-closed" data-url="{% url 'task-update-page' pk=task.id %}" data-flag="{{ task.is_completed|opp }}">Completed</a>
+                          <a class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}" data-flag="{{ task.is_completed|opp }}">Completed</a>
                         </div>
                     </div>
                 {% else %}
                     <div class="card">
                         <div class="card-content red-text">
                           <span class="card-title">{{ task.description }}</span>
-                            <input id="deadline" data-url="{% url 'task-update-page' pk=task.id %}" type="date" class="datepicker picker__input">
+                            <input id="deadline" data-url="{% url 'task-update-deadline-page' pk=task.id %}" type="date" class="datepicker picker__input js-update-deadline" value="{{ task.deadline|date:"Y-m-d" }}">
                             <a href="{% url 'task-delete-page' pk=task.id %}">Delete</a>
                         </div>
                     </div>
