@@ -31,13 +31,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'simple_email_confirmation',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'todo_list',
 )
 
@@ -71,6 +74,14 @@ TEMPLATES = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
 WSGI_APPLICATION = 'tp_lab_test.wsgi.application'
 
 
@@ -98,6 +109,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+SITE_ID = 1
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+# Make email verification mandatory to avoid junk email accounts
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# Eliminate need to provide username, as it's a very old practice
+ACCOUNT_USERNAME_REQUIRED = False
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/

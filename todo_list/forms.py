@@ -24,3 +24,9 @@ class UpdateTaskCompletionForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ['is_completed']
+
+
+class CreateUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']

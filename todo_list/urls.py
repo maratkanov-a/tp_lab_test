@@ -4,6 +4,7 @@ from views import *
 
 urlpatterns = [
     url(r'^$', ListTasks.as_view(), name='home-page'),
+    url(r'^user/create/$', CreateUser.as_view(), name='user-create-page'),
     url(r'^task/create/$', CreateTask.as_view(), name='task-create-page'),
     url(r'^task/(?P<pk>\d+)/update/completion/$', UpdateTaskCompletion.as_view(), name='task-update-completion-page'),
     url(r'^task/(?P<pk>\d+)/update/deadline/$', UpdateTaskDeadline.as_view(), name='task-update-deadline-page'),
