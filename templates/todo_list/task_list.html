@@ -14,15 +14,15 @@
             </form>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="content_update">
         <div class="col s12">
             <ul class="collection">
                 {% for task in task_list %}
                     {% if task.is_completed %}
                         <li class="collection-item">
                             <p class="left">
-                                  <input type="checkbox" id="task-already-closed" class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}"#}
-{#                                   data-flag="{{ task.is_completed|opp }}" checked="checked"/>
+                                  <input type="checkbox" id="task-already-closed" class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}"
+                                   data-flag="{{ task.is_completed|opp }}" checked="checked"/>
                                   <label for="task-already-closed"></label>
                             </p>
                             <p class="left li__p__margin completed">
@@ -35,8 +35,8 @@
                     {% elif task.deadline|fix_time > now %}
                             <li class="collection-item">
                                 <p class="left">
-                                  <input type="checkbox" id="task-closed" class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}"#}
-{#                                   data-flag="{{ task.is_completed|opp }}"/>
+                                  <input type="checkbox" id="task-closed" class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}"
+                                   data-flag="{{ task.is_completed|opp }}"/>
                                   <label for="task-closed"></label>
                                 </p>
                                 <p class="left li__p__margin">
