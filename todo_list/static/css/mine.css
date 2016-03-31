@@ -5,3 +5,20 @@
 .js-task-delete, .js-task-closed {
     cursor: pointer;
 }
+
+.completed {
+    text-decoration: line-through;
+    color: grey;
+}
+
+.li__input__small {
+    width: 30% !important;
+}
+
+.li__input__margin__top {
+    margin-top: 5px !important;
+}
+
+.li__p__margin {
+    margin: 15px 20px 0 20px !important;
+}

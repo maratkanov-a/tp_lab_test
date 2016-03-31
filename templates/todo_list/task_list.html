@@ -16,36 +16,48 @@
     </div>
     <div class="row">
         <div class="col s12">
-            {% for task in task_list %}
-                {% if task.deadline|fix_time > now %}
-                    <div class="card">
-                        <div class="card-content">
-                          <span class="card-title">{{ task.description }}</span>
-                            <input data-url="{% url 'task-update-deadline-page' pk=task.id %}" type="date" class="datepicker js-update-deadline" value="{{ task.deadline|date:"Y-m-d" }}">
-                            <p>{{ task.is_completed }}</p>
-                        </div>
-                        <div class="card-action">
-                          <a class="js-task-delete" data-url="{% url 'task-delete-page' pk=task.id %}">
-                              <i class="material-icons">not_interested</i>
-                          </a>
-                          <a class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}" data-flag="{{ task.is_completed|opp }}">
-                              <i class="material-icons">done</i>
-                          </a>
-                        </div>
-                    </div>
-                {% else %}
-                    <div class="card">
-                        <div class="card-content red-text">
-                            <a class="js-task-delete" data-url="{% url 'task-delete-page' pk=task.id %}">
-                                <i class="material-icons">not_interested</i>
-                            </a>
-                          <span class="card-title">{{ task.description }}</span>
-                            <input data-url="{% url 'task-update-deadline-page' pk=task.id %}" type="date" class="datepicker picker__input js-update-deadline" value="{{ task.deadline|date:"Y-m-d" }}">
-
-                        </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
+            <ul class="collection">
+                {% for task in task_list %}
+                    {% if task.is_completed %}
+                        <li class="collection-item">
+                            <p class="left">
+                                  <input type="checkbox" id="task-already-closed" class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}"#}
+{#                                   data-flag="{{ task.is_completed|opp }}" checked="checked"/>
+                                  <label for="task-already-closed"></label>
+                            </p>
+                            <p class="left li__p__margin completed">
+                                {{ task.description }}
+                            </p>
+                            <input disabled data-url="{% url 'task-update-deadline-page' pk=task.id %}" type="date"
+                                   class="datepicker js-update-deadline li__input__small li__input__margin__top" value="{{ task.deadline|date:"Y-m-d" }}">
+                            <a class="btn-floating btn-large waves-effect waves-light red right js-task-delete" data-url="{% url 'task-delete-page' pk=task.id %}"><i class="material-icons">not_interested</i></a>
+                        </li>
+                    {% elif task.deadline|fix_time > now %}
+                            <li class="collection-item">
+                                <p class="left">
+                                  <input type="checkbox" id="task-closed" class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}"#}
+{#                                   data-flag="{{ task.is_completed|opp }}"/>
+                                  <label for="task-closed"></label>
+                                </p>
+                                <p class="left li__p__margin">
+                                    {{ task.description }}
+                                </p>
+                                <input data-url="{% url 'task-update-deadline-page' pk=task.id %}" type="date"
+                                       class="datepicker js-update-deadline li__input__small li__input__margin__top" value="{{ task.deadline|date:"Y-m-d" }}">
+                                <a class="btn-floating btn-large waves-effect waves-light red right js-task-delete" data-url="{% url 'task-delete-page' pk=task.id %}"><i class="material-icons">not_interested</i></a>
+                            </li>
+                    {% else %}
+                        <li class="collection-item red-text">
+                            <p class="left li__p__margin">
+                                {{ task.description }}
+                            </p>
+                            <input data-url="{% url 'task-update-deadline-page' pk=task.id %}" type="date"
+                                   class="datepicker js-update-deadline li__input__small li__input__margin__top" value="{{ task.deadline|date:"Y-m-d" }}">
+                            <a class="btn-floating btn-large waves-effect waves-light red right js-task-delete" data-url="{% url 'task-delete-page' pk=task.id %}"><i class="material-icons">not_interested</i></a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock %}
