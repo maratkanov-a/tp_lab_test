@@ -1,6 +1,7 @@
 import datetime
 from django.contrib.auth.models import User
 from django.db import models
+from todo_list.managers import TaskManager
 
 
 class Task(models.Model):
@@ -9,3 +10,5 @@ class Task(models.Model):
     is_completed = models.BooleanField(default=False)
     is_overdue = models.BooleanField(default=False)
     which_user = models.ForeignKey(User)
+
+    object = TaskManager()

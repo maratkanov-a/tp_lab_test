@@ -2,7 +2,10 @@ $('.js-add-task').on('submit', function(e) {
      e.preventDefault();
     var new_this = $(this);
     $.post(new_this.find('#task').data('url'),
-        { description: new_this.find('#task').val() },
+        {
+            description: new_this.find('#task').val(),
+            deadline: new_this.find('#deadline').val()
+        },
         function(){
             $('html').load('/')
         }

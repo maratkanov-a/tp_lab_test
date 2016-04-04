@@ -6,7 +6,7 @@ from forms import *
 
 
 class ListTasks(ListView):
-    model = Task
+    queryset = Task.object.new()
 
     def get_context_data(self, **kwargs):
         data = super(ListTasks, self).get_context_data(**kwargs)
