@@ -7,43 +7,44 @@ $('.js-add-task').on('submit', function(e) {
             deadline: new_this.find('#deadline').val()
         },
         function(){
-            $('html').load('/')
+            $('#content_update').load('/ #content_update');
+            new_this.find('#task').val('')
         }
     );
 });
 
 
-$('.js-task-closed').on('click', function(e) {
+$('#content_update').on('click', '.js-task-closed', function(e) {
      e.preventDefault();
     var new_this = $(this);
     $.post(new_this.data('url'),
         { is_completed: new_this.data('flag')},
         function(){
-            $('html').load('/')
+            $('#content_update').load('/ #content_update');
         }
     );
 });
 
 
-$('.js-update-deadline').on('change', function(e) {
+$('#content_update').on('change', '.js-update-deadline', function(e) {
      e.preventDefault();
     var new_this = $(this);
     $.post(new_this.data('url'),
         { deadline: new_this.val()},
         function(){
-            $('html').load('/')
+            $('#content_update').load('/ #content_update');
         }
     );
 });
 
 
-$('.js-task-delete').on('click', function(e) {
+$('#content_update').on('click', '.js-task-delete', function(e) {
      e.preventDefault();
     var new_this = $(this);
     $.post(new_this.data('url'),
         { deadline: new_this.val()},
         function(){
-            $('html').load('/')
+            $('#content_update').load('/ #content_update');
         }
     );
 });
