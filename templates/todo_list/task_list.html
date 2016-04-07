@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
 {% load not_bool %}
+{% load staticfiles %}
 
 {% block content %}
+{% if user.is_authenticated %}
     <div  class="row margin-content">
         <div class="col s12">
 
@@ -71,4 +73,29 @@
             </ul>
         </div>
     </div>
+    {% else %}
+        <div class="row auth__field margin-content">
+            <div class="col s12">
+              <div class="card">
+                <div class="card-content">
+                  <p>
+                      Login or SignUp to make your TODO lists like this
+                  </p>
+                </div>
+                <div class="card-action">
+                  <a href="{% url 'account_login' %}">Login</a>
+                  <a href="{% url 'account_signup' %}">SignUp</a>
+                </div>
+              </div>
+            </div>
+            <div class='auth__field__arrow'>
+                <img src="{% static 'img/arrow_down.png' %}" alt="">
+            </div>
+      </div>
+        <div class="row">
+            <div class="col s12">
+                <img src="{% static 'img/1.png' %}" class="auth__adv__img">
+        </div>
+        </div>
+    {% endif %}
 {% endblock %}

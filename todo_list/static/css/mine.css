@@ -26,3 +26,18 @@
 a {
     color: black;
 }
+
+.auth__field {
+    position: relative;
+}
+
+.auth__field__arrow {
+    position: absolute;
+     left: 40%;
+    top: 12%;
+}
+
+.auth__adv__img {
+    width: 100%;
+}
+

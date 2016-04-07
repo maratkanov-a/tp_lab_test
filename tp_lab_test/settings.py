@@ -124,10 +124,10 @@ EMAIL_PORT = 587
 
 # Optional SMTP authentication information for EMAIL_HOST.
 EMAIL_HOST_USER = 'a.s.maratkanov@gmail.com'
-EMAIL_HOST_PASSWORD = 'PASSWORD_removed_for_now'
+EMAIL_HOST_PASSWORD = 'letsrock66'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, "todo_list/static")
+STATIC_ROOT = os.path.join(BASE_DIR, 'todo_list', 'static')
 STATIC_URL = '/static/'
