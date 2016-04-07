@@ -26,26 +26,41 @@
         <div class="col s12">
             <ul class="collection">
                 {% for task in task_list %}
-                    {% if task.is_completed %}
-                        <li class="collection-item">
-                            <p class="left">
-                                  <input type="checkbox" id="task-already-closed-{{ task.id }}" class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}"
-                                   data-flag="{{ task.is_completed|opp }}" checked="checked"/>
-                                  <label for="task-already-closed-{{ task.id }}"></label>
-                            </p>
-                            <p class="left li__p__margin completed">
-                                {{ task.description }}
-                            </p>
-                            <input disabled data-url="{% url 'task-update-deadline-page' pk=task.id %}" type="date"
-                                   class="datepicker js-update-deadline li__input__small li__input__margin__top" value="{{ task.deadline|date:"Y-m-d" }}">
-                            <a class="right js-task-delete li__a_delete__margin" data-url="{% url 'task-delete-page' pk=task.id %}"><i class="fa fa-times fa-2x"></i></a>
-                        </li>
-                    {% elif task.deadline|fix_time > now %}
+                    {% if user == task.which_user %}
+                        {% if task.is_completed %}
                             <li class="collection-item">
                                 <p class="left">
-                                  <input type="checkbox" id="task-closed-{{ task.id }}" class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}"
-                                   data-flag="{{ task.is_completed|opp }}"/>
-                                  <label for="task-closed-{{ task.id }}"></label>
+                                      <input type="checkbox" id="task-already-closed-{{ task.id }}" class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}"
+                                       data-flag="{{ task.is_completed|opp }}" checked="checked"/>
+                                      <label for="task-already-closed-{{ task.id }}"></label>
+                                </p>
+                                <p class="left li__p__margin completed">
+                                    {{ task.description }}
+                                </p>
+                                <input disabled data-url="{% url 'task-update-deadline-page' pk=task.id %}" type="date"
+                                       class="datepicker js-update-deadline li__input__small li__input__margin__top" value="{{ task.deadline|date:"Y-m-d" }}">
+                                <a class="right js-task-delete li__a_delete__margin" data-url="{% url 'task-delete-page' pk=task.id %}"><i class="fa fa-times fa-2x"></i></a>
+                            </li>
+                        {% elif task.deadline|fix_time > now %}
+                                <li class="collection-item">
+                                    <p class="left">
+                                      <input type="checkbox" id="task-closed-{{ task.id }}" class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}"
+                                       data-flag="{{ task.is_completed|opp }}"/>
+                                      <label for="task-closed-{{ task.id }}"></label>
+                                    </p>
+                                    <p class="left li__p__margin">
+                                        {{ task.description }}
+                                    </p>
+                                    <input data-url="{% url 'task-update-deadline-page' pk=task.id %}" type="date"
+                                           class="datepicker js-update-deadline li__input__small li__input__margin__top" value="{{ task.deadline|date:"Y-m-d" }}">
+                                    <a class="right js-task-delete li__a_delete__margin" data-url="{% url 'task-delete-page' pk=task.id %}"><i class="fa fa-times fa-2x"></i></a>
+                                </li>
+                        {% else %}
+                            <li class="collection-item red-text">
+                                <p class="left">
+                                      <input type="checkbox" id="task-closed-{{ task.id }}" class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}"
+                                       data-flag="{{ task.is_completed|opp }}"/>
+                                      <label for="task-closed-{{ task.id }}"></label>
                                 </p>
                                 <p class="left li__p__margin">
                                     {{ task.description }}
@@ -54,20 +69,7 @@
                                        class="datepicker js-update-deadline li__input__small li__input__margin__top" value="{{ task.deadline|date:"Y-m-d" }}">
                                 <a class="right js-task-delete li__a_delete__margin" data-url="{% url 'task-delete-page' pk=task.id %}"><i class="fa fa-times fa-2x"></i></a>
                             </li>
-                    {% else %}
-                        <li class="collection-item red-text">
-                            <p class="left">
-                                  <input type="checkbox" id="task-closed-{{ task.id }}" class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}"
-                                   data-flag="{{ task.is_completed|opp }}"/>
-                                  <label for="task-closed-{{ task.id }}"></label>
-                            </p>
-                            <p class="left li__p__margin">
-                                {{ task.description }}
-                            </p>
-                            <input data-url="{% url 'task-update-deadline-page' pk=task.id %}" type="date"
-                                   class="datepicker js-update-deadline li__input__small li__input__margin__top" value="{{ task.deadline|date:"Y-m-d" }}">
-                            <a class="right js-task-delete li__a_delete__margin" data-url="{% url 'task-delete-page' pk=task.id %}"><i class="fa fa-times fa-2x"></i></a>
-                        </li>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -95,7 +97,7 @@
         <div class="row">
             <div class="col s12">
                 <img src="{% static 'img/1.png' %}" class="auth__adv__img">
-        </div>
+            </div>
         </div>
     {% endif %}
 {% endblock %}
