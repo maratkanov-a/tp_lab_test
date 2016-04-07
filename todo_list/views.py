@@ -1,5 +1,7 @@
+import json
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse_lazy
+from django.http import HttpResponse
 from django.views.generic import TemplateView, DeleteView, DetailView, ListView, UpdateView, CreateView, FormView, View
 from models import *
 from forms import *
@@ -22,6 +24,20 @@ class CreateTask(CreateView):
     def form_valid(self, form):
         form.instance.which_user = self.request.user
         return super(CreateTask, self).form_valid(form)
+
+    def form_invalid(self, form):
+        data = []
+        for k, v in form._errors.iteritems():
+            text = {
+                'desc': ', '.join(v),
+            }
+            if k == '__all__':
+                text['key'] = '#{}'.format(self.request.POST.get('form'))
+            else:
+                text['key'] = '#{}'.format(k)
+            data.append(text)
+        response = {'bad': data}
+        return HttpResponse(json.dumps(response))
 
 
 class UpdateTaskCompletion(UpdateView):

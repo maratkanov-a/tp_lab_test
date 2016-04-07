@@ -11,11 +11,13 @@
             <form method="POST" class="js-add-task">
                 {% csrf_token %}
                 <div class="input-field col s12">
-                  <input placeholder="Place your task here" id="task" data-url="{% url 'task-create-page'%}" type="text" class="validate">
-                  <label for="task">Task</label>
+                  <input placeholder="Place your task here" id="description" data-url="{% url 'task-create-page'%}" type="text" class="validate">
+                  <label for="description">Task</label>
+                    <div id="description_error"></div>
                 </div>
                 <div class="input-field col s12">
                   <input id="deadline" type="date" class="validate" value="{{ now|nex_day_time|date:"Y-m-d" }}">
+                    <div id="deadline_error"></div>
                 </div>
                 <button class="waves-effect waves-light btn right" type="submit">Add Task</button>
             </form>

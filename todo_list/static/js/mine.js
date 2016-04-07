@@ -1,14 +1,29 @@
 $('.js-add-task').on('submit', function(e) {
      e.preventDefault();
     var new_this = $(this);
-    $.post(new_this.find('#task').data('url'),
+
+    new_this.find('#description_error').text('');
+    new_this.find('#deadline_error').text('');
+
+    $.post(new_this.find('#description').data('url'),
         {
-            description: new_this.find('#task').val(),
+            description: new_this.find('#description').val(),
             deadline: new_this.find('#deadline').val()
         },
-        function(){
+        function(response){
+
+            try {
+                 var jsonResponse = JSON.parse(response);
+                if ( jsonResponse['bad'] ) {
+                    jsonResponse['bad'].forEach( function(element) {
+                    new_this.find(element['key'] + "_error").text(element['desc'])
+                    })
+                }
+            } catch(err) {
+
+            }
             $('#content_update').load('/ #content_update');
-            new_this.find('#task').val('')
+            new_this.find('#description').val('')
         }
     );
 });
