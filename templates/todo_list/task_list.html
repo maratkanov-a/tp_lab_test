@@ -10,12 +10,12 @@
 
             <form method="POST" class="js-add-task">
                 {% csrf_token %}
-                <div class="input-field col s12">
+                <div class="input-field col s12 m9 l9">
                   <input placeholder="Place your task here" id="description" data-url="{% url 'task-create-page'%}" type="text" class="validate">
                   <label for="description">Task</label>
                     <div id="description_error"></div>
                 </div>
-                <div class="input-field col s12">
+                <div class="input-field col s12 m3 l3">
                   <input id="deadline" type="date" class="validate" value="{{ now|nex_day_time|date:"Y-m-d" }}">
                     <div id="deadline_error"></div>
                 </div>
