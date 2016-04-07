@@ -14,15 +14,14 @@ $('.js-add-task').on('submit', function(e) {
 
             try {
                  var jsonResponse = JSON.parse(response);
-                if ( jsonResponse['bad'] ) {
+                 if ( jsonResponse['bad'] ) {
                     jsonResponse['bad'].forEach( function(element) {
-                    new_this.find(element['key'] + "_error").text(element['desc'])
+                        new_this.find(element['key'] + "_error").text(element['desc'])
                     })
-                }
+                 }
             } catch(err) {
-
+                $('#content_update').load('/ #content_update');
             }
-            $('#content_update').load('/ #content_update');
             new_this.find('#description').val('')
         }
     );
