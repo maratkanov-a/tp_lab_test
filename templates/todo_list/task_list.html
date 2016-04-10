@@ -31,8 +31,8 @@
                     {% if user == task.which_user %}
                         {% if task.is_completed %}
                             <li class="collection-item">
-                                <p class="left">
-                                      <input type="checkbox" id="task-already-closed-{{ task.id }}" class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}"
+                                <p class="left js-task-closed">
+                                      <input type="checkbox" id="task-already-closed-{{ task.id }}" data-url="{% url 'task-update-completion-page' pk=task.id %}"
                                        data-flag="{{ task.is_completed|opp }}" checked="checked"/>
                                       <label for="task-already-closed-{{ task.id }}"></label>
                                 </p>
@@ -45,8 +45,8 @@
                             </li>
                         {% elif task.deadline|fix_time > now %}
                                 <li class="collection-item">
-                                    <p class="left">
-                                      <input type="checkbox" id="task-closed-{{ task.id }}" class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}"
+                                    <p class="left js-task-closed">
+                                      <input type="checkbox" id="task-closed-{{ task.id }}" data-url="{% url 'task-update-completion-page' pk=task.id %}"
                                        data-flag="{{ task.is_completed|opp }}"/>
                                       <label for="task-closed-{{ task.id }}"></label>
                                     </p>
@@ -59,8 +59,8 @@
                                 </li>
                         {% else %}
                             <li class="collection-item red-text">
-                                <p class="left">
-                                      <input type="checkbox" id="task-closed-{{ task.id }}" class="js-task-closed" data-url="{% url 'task-update-completion-page' pk=task.id %}"
+                                <p class="left js-task-closed">
+                                      <input type="checkbox" id="task-closed-{{ task.id }}" data-url="{% url 'task-update-completion-page' pk=task.id %}"
                                        data-flag="{{ task.is_completed|opp }}"/>
                                       <label for="task-closed-{{ task.id }}"></label>
                                 </p>

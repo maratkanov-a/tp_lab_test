@@ -23,7 +23,8 @@ class CreateTask(CreateView):
 
     def form_valid(self, form):
         form.instance.which_user = self.request.user
-        return super(CreateTask, self).form_valid(form)
+        form.save()
+        return HttpResponse(json.dumps({'ok': 'created'}))
 
     def form_invalid(self, form):
         data = []
@@ -45,16 +46,29 @@ class UpdateTaskCompletion(UpdateView):
     form_class = UpdateTaskCompletionForm
     success_url = reverse_lazy('home-page')
 
+    def form_valid(self, form):
+        form.save()
+        return HttpResponse(json.dumps({'ok': 'updated_completion'}))
+
 
 class UpdateTaskDeadline(UpdateView):
     model = Task
     form_class = UpdateTaskDeadlineForm
     success_url = reverse_lazy('home-page')
 
+    def form_valid(self, form):
+        form.save()
+        return HttpResponse(json.dumps({'ok': 'updated_deadline'}))
+
 
 class DeleteTask(DeleteView):
     model = Task
     success_url = reverse_lazy('home-page')
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return HttpResponse(json.dumps({'delete': 'ok'}))
 
 
 class CreateUser(CreateView):
