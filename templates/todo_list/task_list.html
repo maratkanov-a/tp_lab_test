@@ -41,7 +41,7 @@
                                 </p>
                                 <input disabled data-url="{% url 'task-update-deadline-page' pk=task.id %}" type="date"
                                        class="datepicker js-update-deadline li__input__small li__input__margin__top" value="{{ task.deadline|date:"Y-m-d" }}">
-                                <a class="right js-task-delete li__a_delete__margin" data-url="{% url 'task-delete-page' pk=task.id %}"><i class="fa fa-times fa-2x"></i></a>
+                                <a class="right js-task-delete li__a_delete__margin"><i class="fa fa-times fa-2x" data-url="{% url 'task-delete-page' pk=task.id %}"></i></a>
                             </li>
                         {% elif task.deadline|fix_time > now %}
                                 <li class="collection-item">
@@ -55,7 +55,7 @@
                                     </p>
                                     <input data-url="{% url 'task-update-deadline-page' pk=task.id %}" type="date"
                                            class="datepicker js-update-deadline li__input__small li__input__margin__top" value="{{ task.deadline|date:"Y-m-d" }}">
-                                    <a class="right js-task-delete li__a_delete__margin" data-url="{% url 'task-delete-page' pk=task.id %}"><i class="fa fa-times fa-2x"></i></a>
+                                    <a class="right js-task-delete li__a_delete__margin"><i class="fa fa-times fa-2x" data-url="{% url 'task-delete-page' pk=task.id %}"></i></a>
                                 </li>
                         {% else %}
                             <li class="collection-item red-text">
@@ -69,7 +69,7 @@
                                 </p>
                                 <input data-url="{% url 'task-update-deadline-page' pk=task.id %}" type="date"
                                        class="datepicker js-update-deadline li__input__small li__input__margin__top" value="{{ task.deadline|date:"Y-m-d" }}">
-                                <a class="right js-task-delete li__a_delete__margin" data-url="{% url 'task-delete-page' pk=task.id %}"><i class="fa fa-times fa-2x"></i></a>
+                                <a class="right js-task-delete li__a_delete__margin"><i class="fa fa-times fa-2x" data-url="{% url 'task-delete-page' pk=task.id %}"></i></a>
                             </li>
                         {% endif %}
                     {% endif %}

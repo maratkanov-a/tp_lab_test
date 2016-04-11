@@ -24,7 +24,13 @@ class CreateTask(CreateView):
     def form_valid(self, form):
         form.instance.which_user = self.request.user
         form.save()
-        return HttpResponse(json.dumps({'ok': 'created'}))
+        resp_dict = {
+            'ok': {
+                'id': form.instance.id,
+
+            }
+        }
+        return HttpResponse(json.dumps(resp_dict))
 
     def form_invalid(self, form):
         data = []
